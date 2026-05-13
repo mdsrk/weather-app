@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Material Design Base ─────────────────────────────────── */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.5);
+  }
+}
+
+/* ─── Material Ripple Effect ───────────────────────────────── */
+@layer utilities {
+  .ripple-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-effect 0.6s ease-out forwards;
+    pointer-events: none;
+  }
+  
+  @keyframes ripple-effect {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+}
+
+/* ─── Weather Animation Keyframes ──────────────────────────── */
+@layer utilities {
+  /* Sun animations */
+  .sun-pulse {
+    animation: sunPulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes sunPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.9; }
+  }
+  
+  .sun-rotate {
+    animation: sunRotate 20s linear infinite;
+  }
+  
+  @keyframes sunRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .rise-up {
+    animation: riseUp var(--duration, 6s) ease-in infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  
+  @keyframes riseUp {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+  }
+
+  /* Rain animations */
+  .rain-fall {
+    animation: rainFall var(--duration, 1s) linear infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  
+  @keyframes rainFall {
+    0% { transform: translateY(-10px) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh) translateX(-20px); opacity: 0; }
+  }
+  
+  .splash-effect {
+    animation: splash 1.5s ease-out infinite;
+  }
+  
+  @keyframes splash {
+    0% { transform: scale(0); opacity: 0.8; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  /* Snow animations */
+  .snow-fall {
+    animation: snowFall var(--duration, 3s) linear infinite;
+    animation-delay: var(--delay, 0s);
+  }
+  
+  @keyframes snowFall {
+    0% { transform: translateY(-10px) translateX(0) rotate(0deg); }
+    100% { transform: translateY(100vh) translateX(30px) rotate(360deg); }
+  }
+  
+  .snow-drift {
+    animation: snowDrift var(--drift, 2s) ease-in-out infinite alternate;
+  }
+  
+  @keyframes snowDrift {
+    0% { transform: translateX(-10px); }
+    100% { transform: translateX(10px); }
+  }
+
+  /* Cloud animations */
+  .cloud-drift {
+    animation: cloudDrift var(--speed, 20s) linear infinite;
+  }
+  
+  @keyframes cloudDrift {
+    0% { transform: translateX(-150px); }
+    100% { transform: translateX(calc(100vw + 150px)); }
+  }
+
+  /* Storm animations */
+  .lightning-flash {
+    animation: lightning var(--interval, 5s) infinite;
+  }
+  
+  @keyframes lightning {
+    0%, 94%, 100% { opacity: 0; }
+    95% { opacity: 0.3; }
+    96% { opacity: 0; }
+    97% { opacity: 0.2; }
+    98% { opacity: 0; }
+  }
+
+  /* Material animations */
+  .fade-up {
+    animation: fadeUp 0.4s ease-out;
+  }
+  
+  @keyframes fadeUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
+
+  .float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Shimmer loading */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Pulse glow */
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+  }
+}
+
+/* ─── Glassmorphism Utilities ──────────────────────────────── */
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-md border border-white/10;
+  }
+  
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-3xl;
+  }
+  
+  .glass-card-dark {
+    @apply bg-gray-900/60 backdrop-blur-xl border border-gray-700/30 shadow-xl rounded-3xl;
+  }
+}
+
+/* ─── Scrollbar for Hourly Forecast ────────────────────────── */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* ─── Reduced Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
