@@ -1,5 +1,5 @@
-# Dependencies
 node_modules/
+# Dependencies
 package-lock.json
 
 # Build outputs
@@ -18,6 +18,9 @@ build/
 *.swp
 *.swo
 *~
+
+# Cline skills
+.cline/skills/
 
 # OS
 .DS_Store
